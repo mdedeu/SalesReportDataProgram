@@ -1,5 +1,5 @@
 # Integrantes del TP
-- [Florencia Chao](https://github.com/user/fchao)
+- [Florencia Chao](https://github.com/user/florchao)
 - [Marcos Dedeu](https://github.com/user/mdedeu) 
 - [Ariadna Fernández Truglia](https://github.com/user/arfernandez2000)
 - [Hernán Finucci](https://github.com/user/hfinucci)
