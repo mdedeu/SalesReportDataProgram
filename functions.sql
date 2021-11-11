@@ -404,18 +404,18 @@ BEGIN
             EXIT WHEN NOT FOUND OR (years <= 0);
             IF cYear IS NULL THEN
                 BEGIN
-                    raise notice '-------------------------------------Consolidated Customer Report-------------------------------';
-                    raise notice 'Year-----Category--------------------------Recency-Frecuency-Monetary-------------------------';
+                    raise info '-------------------------------------Consolidated Customer Report-------------------------------';
+                    raise info 'Year-----Category--------------------------Recency-Frecuency-Monetary-------------------------';
                 END;
             END IF;
-            raise notice '--------------------------------------------------------------------------------------------------';
+            raise info '--------------------------------------------------------------------------------------------------';
                 cYear := yearV;
                 auxiChar := CAST( cYear AS CHAR(4));
                 OPEN cursor_birth;
                 LOOP
                     FETCH cursor_birth INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise notice '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                 END LOOP;
@@ -425,7 +425,7 @@ BEGIN
                 LOOP
                     FETCH cursor_education INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise notice '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                    
                     
@@ -436,7 +436,7 @@ BEGIN
                 LOOP
                     FETCH cursor_income INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise notice '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                 END LOOP;
@@ -446,14 +446,14 @@ BEGIN
                 LOOP
                     FETCH cursor_maritalStatus INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise notice '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                  END LOOP;
                 CLOSE cursor_maritalStatus;
 
             years := years-1;
-            raise notice '------------------------------------------------------------------------------------% % %', totalRecency, totalFrecuency, totalMonetary;
+            raise info '------------------------------------------------------------------------------------% % %', totalRecency, totalFrecuency, totalMonetary;
 
             END LOOP;
             CLOSE cursor_year;
