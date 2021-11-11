@@ -286,7 +286,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE load_table();
 CREATE OR REPLACE FUNCTION ReporteConsolidado(years int ) RETURNS void AS $$
     DECLARE 
-        cYear int;
+        currentYear int;
         auxiChar char(4);
         auxi RECORD;
         auxiYear RECORD;
@@ -337,7 +337,7 @@ cursor_birth CURSOR FOR(
                 JOIN quarter ON quarter.trimID = monthT.trimID
                 JOIN semester ON semester.semID = quarter.semID
                 JOIN yearT ON semester.anio = yeart.anio
-            WHERE yearT.anio = cYear
+            WHERE yearT.anio = currentYear
             GROUP BY category  
 );
               
@@ -353,7 +353,7 @@ cursor_education CURSOR FOR(
                 JOIN quarter ON quarter.trimID = monthT.trimID
                 JOIN semester ON semester.semID = quarter.semID
                 JOIN yearT ON semester.anio = yearT.anio
-            WHERE yearT.anio = cYear
+            WHERE yearT.anio = currentYear
             GROUP BY category
 );
    
@@ -369,7 +369,7 @@ cursor_maritalStatus CURSOR FOR(SELECT 'Marital status: ' || Marital_Status AS c
                 JOIN quarter ON quarter.trimID = monthT.trimID
                 JOIN semester ON semester.semID = quarter.semID
                 JOIN yearT ON semester.anio = yearT.anio
-            WHERE yearT.anio = cYear
+            WHERE yearT.anio = currentYear
             GROUP BY marital_Status
         ORDER BY category); 
     
@@ -393,7 +393,7 @@ cursor_income CURSOR FOR(
                 JOIN quarter ON quarter.trimID = monthT.trimID
                 JOIN semester ON semester.semID = quarter.semID
                 JOIN yearT ON semester.anio = yearT.anio
-            WHERE yearT.anio = cYear
+            WHERE yearT.anio = currentYear
             GROUP BY category
 );
       
@@ -402,20 +402,20 @@ BEGIN
             LOOP
             FETCH cursor_year INTO yearV, totalRecency,totalFrecuency, totalMonetary ;
             EXIT WHEN NOT FOUND OR (years <= 0);
-            IF cYear IS NULL THEN
+            IF currentYear IS NULL THEN
                 BEGIN
                     raise info '-------------------------------------Consolidated Customer Report-------------------------------';
                     raise info 'Year-----Category--------------------------Recency-Frecuency-Monetary-------------------------';
                 END;
             END IF;
             raise info '--------------------------------------------------------------------------------------------------';
-                cYear := yearV;
-                auxiChar := CAST( cYear AS CHAR(4));
+                currentYear := yearV;
+                auxiChar := CAST( currentYear AS CHAR(4));
                 OPEN cursor_birth;
                 LOOP
                     FETCH cursor_birth INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', currentYear, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                 END LOOP;
@@ -425,7 +425,7 @@ BEGIN
                 LOOP
                     FETCH cursor_education INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', currentYear, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                    
                     
@@ -436,7 +436,7 @@ BEGIN
                 LOOP
                     FETCH cursor_income INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', currentYear, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                 END LOOP;
@@ -446,7 +446,7 @@ BEGIN
                 LOOP
                     FETCH cursor_maritalStatus INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', currentYear, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                  END LOOP;
