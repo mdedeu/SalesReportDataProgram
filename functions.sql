@@ -273,9 +273,8 @@ DECLARE
         IDdia definitiva.diaID%type;
 BEGIN
         IDdia := load_dates(new.dt_customer);
-        INSERT INTO definitiva VALUES (CAST(new.id AS int), CAST(new.year_birth AS int), new.education, new.marital_status, CAST(new.income AS int), CAST(new.kidhome AS int),
-        CAST(new.teenhome AS int), IDdia, CAST(new.recency AS int), CAST(new.mnt_wines AS int), CAST(new.mnt_fruits AS int), CAST(new.mnt_meat AS int), CAST(new.mnt_fish AS int),
-        CAST(new.mnt_sweet AS int), CAST(new.num_deals_purchases AS int), CAST(new.num_web_purchases AS int), CAST(new.num_catalog_purchases AS int), CAST(new.num_stores_purchases AS int));
+        INSERT INTO definitiva VALUES (new.id, new.year_birth, new.education, new.marital_status, new.income, new.kidhome, new.teenhome, IDdia, 
+        new.recency,new.mnt_wines,new.mnt_fruits,new.mnt_meat,new.mnt_fish, new.mnt_sweet,new.num_deals_purchases,new.num_web_purchases, new.num_catalog_purchases,new.num_stores_purchases);
         RETURN new;
 END;
 $load_table$ LANGUAGE plpgsql;
