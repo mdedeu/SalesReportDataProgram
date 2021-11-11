@@ -18,7 +18,7 @@ Puede corrobar que haya tenido éxito revisando que existan todas las tablas de 
 
 ## Segundo Paso:
 Luego, debemos abrir la conexión con la BD. Para ello, ejecutar en línea de comando la siguiente instruccion para ingresar a la base de datos:<br/>
-	 ```psql -h bd1.itba.edu.ar -U username PROOF```
+	 ```psql -h bd1.it.itba.edu.ar -U username PROOF```
 
 ## Tercer Paso:
  Una vez cargada la terminal para utilizar sobre la BD,ejecutar en linea de comando la siguiente instruccion para cargar los datos:<br/><br/>
