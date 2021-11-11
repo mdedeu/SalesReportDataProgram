@@ -415,7 +415,7 @@ BEGIN
                 LOOP
                     FETCH cursor_birth INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise info '%       %                          %    %   %', currentYear, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                 END LOOP;
@@ -425,7 +425,7 @@ BEGIN
                 LOOP
                     FETCH cursor_education INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise info '%       %                          %    %   %', currentYear, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                    
                     
@@ -436,7 +436,7 @@ BEGIN
                 LOOP
                     FETCH cursor_income INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise info '%       %                          %    %   %', currentYear, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                 END LOOP;
@@ -446,7 +446,7 @@ BEGIN
                 LOOP
                     FETCH cursor_maritalStatus INTO category2, recency2, frecuency2, monetary2;
                     EXIT WHEN NOT FOUND;
-                    raise info '%       %                          %    %   %', currentYear, category2, recency2, frecuency2, monetary2;
+                    raise info '%       %                          %    %   %', auxiChar, category2, recency2, frecuency2, monetary2;
                     auxiChar := '---';
                     
                  END LOOP;
